@@ -1,0 +1,55 @@
+#
+# FSI Server - Web Interface Configuration
+#
+---
+setup:
+  # host name to use for public access, e.g. a CDN
+  proxyHostname: ""
+  #  Use HTTP or HTTPS scheme in URLs
+  useSchemeInURLs: false
+
+login:
+  # default user to fill into form
+  defaultUser: ""
+  # default password to fill into form
+  defaultPassword: ""
+  # the path to show after login, "" to use the path from the latest login
+  browsePath: ""
+  # default selected language, "auto" for browser detection or "en","fr","de","es",...
+  language: auto
+  # show a warning after login when using default credentials
+  defaultCredentialsWarning: true
+  #  optional URL to a custom logo, "none" for no logo at all
+  logoURL: false
+  # active working area section on login
+  # default: null == ("Help")
+  # possible values: "Help", "Publish", "Download", "Upload", "Info" (if "mainTabs.info.contentURL" has been defined)
+  activeTab: ""
+
+fileView:
+  # use smooth scrolling in file view
+  smoothScrolling: true
+  # mouse wheel speed factor
+  mouseWheelSpeed: 1.0
+  # remember view properties (view mode, thumb size, sort order) by connector type or individually for each connector
+  viewPropertiesByConnectorType: true
+  # update images in importing or re-importing state and pending downloads
+  liveUpdate: true
+  # show meta data of parent folder if nothing is selected
+  parentMetaData: true
+  # show SVG images maximized #
+  maximizeSVG: true
+
+mainTabs:
+  search:
+    hidden: false
+  info:
+    # content for the "Info" section, sample: "./info/index.html
+    contentURL: ""
+  help:
+    # content for the "Help" section, sample: "./help/index.html" or auto for built-in multi-lingual help
+    contentURL: auto
+
+locationBar:
+  # use auto-complete feature in location bar while you type
+  autoComplete: true

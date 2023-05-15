@@ -1,0 +1,8 @@
+---
+enabled: true
+imageRenderer:
+  allowedGroups: "public"
+  keepAspectRatio: true
+output:
+  format: "SWF"
+  quality: 92

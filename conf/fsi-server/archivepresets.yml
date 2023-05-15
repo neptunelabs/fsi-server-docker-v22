@@ -1,0 +1,9 @@
+---
+version: "3.0.0"
+preset:
+- name: "ZIP Archive"
+  archivetype: "zip"
+- name: "GZipped Tar Archive"
+  archivetype: "tar.gz"
+- name: "BZ2 Tar Archive"
+  archivetype: "tar.bz2"

@@ -1,0 +1,17 @@
+---
+enabled: true
+origin:
+  location: "/srv/fsi/mounts/assets/images"
+conversion:
+  format: "JPEG"
+  quality: 95
+  levelQuality: "NORMAL"
+  chromaSubsampling: "4:4:4"
+type: "storage"
+access:
+  group:
+    - name: "public"
+      permissionSet: "public_images"
+    - name: "authenticated"
+      permissionSet: "full"
+comment: "Images Connector"

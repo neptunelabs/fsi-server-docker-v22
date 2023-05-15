@@ -1,0 +1,15 @@
+[global]
+rw=randread
+blocksize=4k
+ioengine=libaio
+direct=1
+iodepth=32
+numjobs=4
+group_reporting
+runtime=60
+refill_buffers
+time_based
+
+[assets]
+filename=/bench/assets/bench/testfile
+size=4G

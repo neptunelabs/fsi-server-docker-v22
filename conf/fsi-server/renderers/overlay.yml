@@ -1,0 +1,11 @@
+---
+enabled: true
+imageRenderer:
+  implementation: "SimpleWatermarkRenderer"
+  allowedGroups: "public"
+  keepAspectRatio: true
+infoRenderer:
+  allowedGroups: "public"
+output:
+  format: "AUTO"
+  quality: 92

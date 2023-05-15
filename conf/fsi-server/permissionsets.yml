@@ -1,0 +1,50 @@
+---
+users:
+  - name: administrator
+    general:
+      default: true
+    settings:
+      default: true
+
+  - name: users
+    general:
+      writePreferences: true
+      virtualWriteRights: true
+      changePassword: true
+
+connectors:
+  - name: full
+    read:
+      default: true
+    list:
+      default: true
+    write:
+      default: true
+    tasks:
+      default: true
+
+  - name: public_images
+    read:
+      renderedImages: true
+      storageStatus: true
+      basicMetadata: true
+      extendedMetadata: true
+    list:
+      files: true
+      searchResults: true
+
+  - name: public_statics
+    read:
+      files: true
+      basicMetadata: true
+      extendedMetadata: true
+
+  - name: read_only
+    read:
+      default: true
+    list:
+      default: true
+    write:
+      default: false
+    tasks:
+      default: false

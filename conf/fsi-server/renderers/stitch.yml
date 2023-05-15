@@ -1,0 +1,14 @@
+---
+enabled: true
+imageRenderer:
+  implementation: "StitchImageRenderer"
+  allowedGroups: "public"
+  maxWidth: 3000
+  maxHeight: 3000
+  keepAspectRatio: true
+infoRenderer:
+  implementation: "StitchInfoRenderer"
+  allowedGroups: "public"
+output:
+  format: "AUTO"
+  quality: 92

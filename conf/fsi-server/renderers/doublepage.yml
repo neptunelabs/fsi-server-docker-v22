@@ -1,0 +1,12 @@
+---
+enabled: true
+imageRenderer:
+  implementation: "DoublePageImageRenderer"
+  allowedGroups: "public"
+  keepAspectRatio: true
+infoRenderer:
+  implementation: "StitchInfoRenderer"
+  allowedGroups: "public"
+output:
+  format: "AUTO"
+  quality: 92

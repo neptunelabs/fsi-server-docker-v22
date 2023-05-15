@@ -1,0 +1,13 @@
+---
+enabled: true
+imageRenderer:
+  implementation: "MetricsImageRenderer"
+  allowedGroups: "authenticated"
+  maxWidth: 1000
+  maxHeight: 1000
+  keepAspectRatio: true
+infoRenderer:
+  implementation: "MetricsInfoRenderer"
+  allowedGroups: "authenticated"
+output:
+  format: "PNG"

@@ -1,0 +1,13 @@
+---
+enabled: true
+imageRenderer:
+  allowedGroups: "public"
+infoRenderer:
+  allowedGroups: "public"
+directoryImageRenderer:
+  allowedGroups: "authenticated"
+listRenderer:
+  allowedGroups: "public"
+output:
+  format: "SWF"
+  quality: 92

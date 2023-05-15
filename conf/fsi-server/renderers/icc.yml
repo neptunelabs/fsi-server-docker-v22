@@ -1,0 +1,7 @@
+---
+enabled: true
+infoRenderer:
+  implementation: "ICCInfoRenderer"
+  allowedGroups: "authenticated"
+output:
+  format: "PNG"

@@ -1,0 +1,14 @@
+---
+enabled: true
+imageRenderer:
+  allowedGroups: "public"
+  keepAspectRatio: true
+infoRenderer:
+  allowedGroups: "public"
+output:
+  format: "PNG"
+  colorspace: "GRAY"
+outputEffects:
+  effect:
+  - "Fill(00000000)"
+  - "Invert(alpha)"

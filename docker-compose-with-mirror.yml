@@ -1,0 +1,77 @@
+version: '3'
+services:
+
+  fsi-server:
+    image: neptunelabs/fsi-server:${FSI_VERSION}
+    restart: always
+    container_name: fsi-server
+    environment:
+      - SOLR_SERVER_URI=http://solr-server:8983/solr/
+      - LOG_FSI_LEVEL=${LOG_LEVEL}
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - ./fsi-data:/srv/fsi/mounts
+      - ${FSI_CONFIG_PATH}:/srv/fsi/mounts/config
+      - ${ASSET_PATH}:/srv/fsi/mounts/assets
+      - ${STORAGE_PATH}:/srv/fsi/mounts/storage
+    depends_on:
+      - solr-server
+    userns_mode: "host"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "2000k"
+
+  solr-server:
+    image: solr:6-alpine
+    restart: always
+    container_name: solr
+    volumes:
+      - ./fsi-data/solr-core/fsi-server:/opt/solr/server/solr/fsi-server
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "2000k"
+
+  nginx:
+    image: nginx:${NGINX}
+    restart: always
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./conf/nginx:/etc/nginx:ro
+      # - /var/log/nginx:/var/log/nginx
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "2000k"
+
+  # Only for synchronisation with one or more mirror servers.
+  # Delete this if you do not need it.
+  lsyncd:
+    build: lsyncd
+    restart: always
+    container_name: lsyncd
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - ./conf/lsyncd/lsyncd.conf.lua:/config/lsyncd.lua:ro
+      - ${SYNC_KEY}:/data/authorized_keys/sync.key.pem:ro
+      - ${ASSET_PATH}:/data/assets:ro
+      - ${OVERLAY_PATH}:/data/overlay:ro
+      - ${STORAGE_PATH}:/data/storage:ro
+      # - ${FSI_CONFIG_PATH}:/data/config:ro
+      # - /var/log/lsyncd:/var/log
+    depends_on:
+      - fsi-server
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "2000k"

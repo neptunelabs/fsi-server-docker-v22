@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="fsi-server" version="1.6">
+ 
+  <fields>
+    <field name="asset.fullpath" type="string" indexed="true"
+      stored="true" required="true" multiValued="false" />
+
+    <field name="file.connector" type="string" indexed="true"
+      stored="false" />
+    <field name="file.type" type="string" indexed="true" stored="true" />
+    <field name="file.path" type="string" indexed="true" stored="false" />
+    <field name="file.fullpath" type="string" indexed="true" stored="false" />
+    <field name="file.name" type="string" indexed="true" stored="false" />
+    <field name="file.prefix" type="string" indexed="true" stored="false" />
+    <field name="file.suffix" type="string" indexed="true" stored="false" />
+    <field name="file.lastmodified" type="tdate" indexed="true"
+      stored="true" />
+    <field name="file.size" type="long" indexed="true" stored="true" />
+    <field name="file.width" type="int" indexed="true" stored="true" />
+    <field name="file.height" type="int" indexed="true" stored="true" />
+    <field name="file.alpha" type="int" indexed="true" stored="true" />
+    <field name="file.resolution" type="long" indexed="true" stored="false" />
+    <field name="file.status" type="int" indexed="true" stored="true" />
+    <field name="file.statusupdate" type="tdate" indexed="true"
+      stored="false" />
+    <field name="file.icc" type="string" indexed="true" stored="false" />
+
+    <field name="all" type="text_general" multiValued="true"
+      indexed="true" stored="false" />
+
+    <field name="_version_" type="long" indexed="true" stored="true" />
+
+    <dynamicField name="exif.*" type="text_general" indexed="true"
+      stored="false" />
+    <dynamicField name="iptc.*" type="text_general" indexed="true"
+      stored="false" />
+    <dynamicField name="xmp.*" type="text_general" indexed="true"
+      stored="false" />
+    <dynamicField name="fsi.*" type="text_general" indexed="true"
+      stored="false" />
+
+    <dynamicField name="*" type="ignored" multiValued="true" />
+
+  </fields>
+
+  <defaultSearchField>all</defaultSearchField>
+  <uniqueKey>asset.fullpath</uniqueKey>
+
+  <copyField source="*" dest="all" />
+
+  <types>
+    <fieldType name="string" class="solr.StrField"
+      sortMissingLast="true" />
+    <fieldType name="int" class="solr.TrieIntField"
+      precisionStep="0" positionIncrementGap="0" />
+    <fieldType name="long" class="solr.TrieLongField"
+      precisionStep="0" positionIncrementGap="0" />
+    <fieldType name="tdate" class="solr.TrieDateField"
+      precisionStep="6" positionIncrementGap="0" />
+    <fieldType name="text_general" class="solr.TextField"
+      positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory" />
+        <filter class="solr.LowerCaseFilterFactory" />
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory" />
+        <filter class="solr.LowerCaseFilterFactory" />
+      </analyzer>
+    </fieldType>
+
+    <fieldtype name="ignored" stored="false" indexed="false"
+      multiValued="true" class="solr.StrField" />
+
+  </types>
+
+</schema>

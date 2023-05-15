@@ -1,0 +1,14 @@
+---
+enabled: true
+origin:
+  location: "samples/statics"
+type: "static"
+access:
+  group:
+  - name: "public"
+    permissionSet: "public_statics"
+  - name: "authenticated"
+    permissionSet: "full"
+comment: |
+  Sample Static Files
+  Connector can be safely removed

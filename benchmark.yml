@@ -1,0 +1,9 @@
+version: '3'
+services:
+
+  benchmark:
+    build: benchmark
+    volumes:
+      - ${ASSET_PATH}:/bench/assets
+      - ${STORAGE_PATH}:/bench/storage
+    privileged: true

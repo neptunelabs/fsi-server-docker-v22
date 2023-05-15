@@ -1,0 +1,20 @@
+---
+application:
+  enabled: true
+  storage: "/srv/fsi/mounts/storage"
+  maxCPU: "auto"
+  maxIO: "auto"
+  jmx: true
+cache:
+  enabled: true
+limits:
+  defaultRenderer: "default"
+  defaultWidth: 400
+  defaultHeight: 300
+  maxWidth: 5120
+  maxHeight: 2880
+search:
+  enabled: true
+  type: "solr"
+  solrServerUri: "{DOCKER_ENV:SOLR_SERVER_URI}"
+  core: "fsi-server"

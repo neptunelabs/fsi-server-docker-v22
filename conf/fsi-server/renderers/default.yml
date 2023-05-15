@@ -1,0 +1,35 @@
+---
+enabled: true
+imageRenderer:
+  allowedGroups: "public"
+  maxWidth: 5120
+  maxHeight: 2880
+  defaultWidth: 400
+  defaultHeight: 300
+  keepAspectRatio: true
+infoRenderer:
+  allowedGroups: "public"
+directoryImageRenderer:
+  allowedGroups: "authenticated"
+listRenderer:
+  allowedGroups: "public"
+output:
+  format: "AUTO"
+  quality: 92
+  optimizeHuffman: true
+  compressionLevel: -1
+  compressionFilter: 1
+  chromaSubsampling: "4:2:0"
+  encoding: "IMAGE"
+  colorspace: "RGB"
+  backgroundColor: "ffffff"
+  ditherer: "FloydSteinberg"
+  quantizer: "NeuQuant"
+  quantizerSampleDepth: 10
+  maxIndexedColors: 0
+  progressive: true
+  snsStrength: 80
+  filterSharpness: 4
+  filterStrength: 35
+  useFloydSerpentine: true
+  gifDelay: 150

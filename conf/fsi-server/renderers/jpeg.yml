@@ -1,0 +1,16 @@
+---
+enabled: true
+imageRenderer:
+  allowedGroups: "public"
+  keepAspectRatio: true
+infoRenderer:
+  allowedGroups: "public"
+directoryImageRenderer:
+  allowedGroups: "authenticated"
+listRenderer:
+  allowedGroups: "public"
+output:
+  format: "JPEG"
+  quality: 92
+  chromaSubsampling: "4:2:0"
+  progressive: true

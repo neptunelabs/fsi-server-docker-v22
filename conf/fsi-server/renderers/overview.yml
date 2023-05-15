@@ -1,0 +1,8 @@
+---
+enabled: true
+listRenderer:
+  implementation: "OverviewListRenderer"
+  allowedGroups: "public"
+output:
+  format: "AUTO"
+  quality: 92

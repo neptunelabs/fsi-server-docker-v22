@@ -1,0 +1,16 @@
+---
+enabled: true
+imageRenderer:
+  allowedGroups: "public"
+  keepAspectRatio: true
+  noredirect: true
+infoRenderer:
+  allowedGroups: "public"
+  noredirect: true
+directoryImageRenderer:
+  allowedGroups: "authenticated"
+listRenderer:
+  allowedGroups: "public"
+output:
+  format: "AUTO"
+  quality: 92

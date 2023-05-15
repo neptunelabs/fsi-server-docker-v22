@@ -1,0 +1,14 @@
+---
+enabled: true
+origin:
+  location: "samples/multi-resolution"
+type: "multiresolution"
+access:
+  group:
+  - name: "public"
+    permissionSet: "public_images"
+  - name: "authenticated"
+    permissionSet: "full"
+comment: |
+  Sample Images Connector
+  Connector can be safely removed

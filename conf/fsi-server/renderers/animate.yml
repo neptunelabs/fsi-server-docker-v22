@@ -1,0 +1,25 @@
+---
+enabled: true
+infoRenderer:
+  implementation: "FirstAssetInfoRenderer"
+  allowedGroups: "public"
+directoryImageRenderer:
+  implementation: "MultiImageRenderer"
+  allowedGroups: "public"
+  maxWidth: 1024
+  maxHeight: 1024
+  maxImages: 36
+  defaultWidth: 300
+  defaultHeight: 300
+output:
+  format: "GIF"
+  quality: 92
+  colorspace: "UNSET"
+  backgroundColor: "ffffff"
+  ditherer: "FloydSteinberg"
+  quantizer: "NeuQuant"
+  quantizerSampleDepth: 10
+  maxIndexedColors: 256
+  useFloydSerpentine: true
+  gifDelay: 150
+  gifLoopCount: 0

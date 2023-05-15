@@ -1,0 +1,13 @@
+---
+enabled: true
+imageRenderer:
+  implementation: "AnaglyphImageRenderer"
+  allowedGroups: "public"
+  keepAspectRatio: true
+infoRenderer:
+  allowedGroups: "public"
+listRenderer:
+  allowedGroups: "public"
+output:
+  format: "AUTO"
+  quality: 92
