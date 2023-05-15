@@ -6,6 +6,8 @@ RUN apk add --no-cache sysbench fio jq libaio
 
 ADD awk /bench/awk
 ADD fio /bench/fio
-ADD --chmod=755 benchmark.sh /bench/benchmark.sh
+ADD benchmark.sh /bench/1.sh
+
+RUN tr -d '\r' < /bench/1.sh >/bench/benchmark.sh && rm /bench/1.sh && chmod +x /bench/benchmark.sh
 
 ENTRYPOINT [ "/bench/benchmark.sh" ]
