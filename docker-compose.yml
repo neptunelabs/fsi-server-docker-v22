@@ -5,9 +5,6 @@ services:
     image: neptunelabs/fsi-server:${FSI_VERSION}
     restart: always
     container_name: fsi-server
-    environment:
-      - SOLR_SERVER_URI=http://solr-server:8983/solr/
-      - LOG_FSI_LEVEL=${LOG_LEVEL}
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - ${FSI_CONFIG_PATH}:/srv/fsi/mounts/config
@@ -49,7 +46,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${NGINX_CONFIG_PATH}:/etc/nginx:ro
-      - ${LOG_PATH}:/var/log/nginx
+      - ${LOG_PATH}/nginx:/var/log/nginx
     logging:
       driver: "json-file"
       options:

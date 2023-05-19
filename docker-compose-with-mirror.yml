@@ -5,9 +5,6 @@ services:
     image: neptunelabs/fsi-server:${FSI_VERSION}
     restart: always
     container_name: fsi-server
-    environment:
-      - SOLR_SERVER_URI=http://solr-server:8983/solr/
-      - LOG_FSI_LEVEL=${LOG_LEVEL}
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - ./fsi-data:/srv/fsi/mounts
