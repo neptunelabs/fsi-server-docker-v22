@@ -153,7 +153,7 @@ or only adjust it if your `docker-compose.yml` is modified accordingly.
 For example, the SSH key can be generated using this command
 
 ```shell
-ssh-keygen -t ed25519 -q -N "" -o -C "fsi-sync-key" -f ./conf/lsyncd/sync.key
+ssh-keygen -t ed25519 -q -N "" -o -C "fsi-sync-key@$(hostname)" -f ./conf/lsyncd/sync.key
 ```
 
 and transferred with this:

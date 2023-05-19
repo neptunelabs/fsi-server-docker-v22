@@ -5,9 +5,11 @@ services:
     image: neptunelabs/fsi-server:${FSI_VERSION}
     restart: always
     container_name: fsi-server
+    environment:
+      - SOLR_SERVER_URI=${SOLR_SERVER_URI}
+      - LOG_FSI_LEVEL=${LOG_FSI_LEVEL}
     volumes:
       - /etc/timezone:/etc/timezone:ro
-      - ./fsi-data:/srv/fsi/mounts
       - ${FSI_CONFIG_PATH}:/srv/fsi/mounts/config
       - ${ASSET_PATH}:/srv/fsi/mounts/assets
       - ${OVERLAY_PATH}:/srv/fsi/mounts/overlay
@@ -53,8 +55,6 @@ services:
       options:
         max-size: "2000k"
 
-  # Only for synchronisation with one or more mirror servers.
-  # Delete this if you do not need it.
   lsyncd:
     build: lsyncd
     restart: always
@@ -68,8 +68,8 @@ services:
       - ${ASSET_PATH}:${ASSET_PATH}:ro
       - ${OVERLAY_PATH}:${OVERLAY_PATH}:ro
       - ${STORAGE_PATH}:${STORAGE_PATH}:ro
+      - ${LOG_PATH}/lsync:/var/log
       # - ${FSI_CONFIG_PATH}:${FSI_CONFIG_PATH}:ro
-      - - ${LOG_PATH}/lsync:/var/log
     logging:
       driver: "json-file"
       options:

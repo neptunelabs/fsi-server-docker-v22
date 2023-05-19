@@ -17,7 +17,7 @@ assert(fsi_config_path, "FSI_CONFIG_PATH env variable is not set")
 settings {
   logfile = "/var/log/lsyncd.log",
   statusFile = "/var/log/lsyncd-status.log",
-  statusInterval = 60,
+  statusInterval = 20,
   insist = true
 }
 
