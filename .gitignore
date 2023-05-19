@@ -4,3 +4,4 @@ fsi-data/catalina
 fsi-data/overlay
 fsi-data/storage
 fsi-data/solr-core/fsi-server/data
+**/bench

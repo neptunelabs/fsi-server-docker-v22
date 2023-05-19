@@ -10,10 +10,11 @@ services:
       - LOG_FSI_LEVEL=${LOG_LEVEL}
     volumes:
       - /etc/timezone:/etc/timezone:ro
-      - ./fsi-data:/srv/fsi/mounts
       - ${FSI_CONFIG_PATH}:/srv/fsi/mounts/config
       - ${ASSET_PATH}:/srv/fsi/mounts/assets
+      - ${OVERLAY_PATH}:/srv/fsi/mounts/overlay
       - ${STORAGE_PATH}:/srv/fsi/mounts/storage
+      - ${LOG_PATH}/fsi:/srv/fsi/mounts/catalina/logs
     depends_on:
       - solr-server
     userns_mode: "host"
@@ -32,14 +33,14 @@ services:
     restart: always
     container_name: solr
     volumes:
-      - ./fsi-data/solr-core/fsi-server:/opt/solr/server/solr/fsi-server
+      - ${SOLR_PATH}:/opt/solr/server/solr/fsi-server
     logging:
       driver: "json-file"
       options:
         max-size: "2000k"
 
   nginx:
-    image: nginx:${NGINX}
+    image: nginx:${NGINX_VERSION}
     restart: always
     container_name: nginx
     ports:
@@ -47,8 +48,8 @@ services:
       - "443:443"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./conf/nginx:/etc/nginx:ro
-      # - /var/log/nginx:/var/log/nginx
+      - ${NGINX_CONFIG_PATH}:/etc/nginx:ro
+      - ${LOG_PATH}:/var/log/nginx
     logging:
       driver: "json-file"
       options:
