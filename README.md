@@ -40,7 +40,7 @@ This repository contains a *docker-compose* file for **Docker** or **Podman** ve
 Depending on the version, perform typical start/stop as follows.
 
 ``` shell
-docker compose up -d
+docker compose up --build -d
 ```
 
 ``` shell

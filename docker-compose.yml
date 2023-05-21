@@ -40,7 +40,7 @@ services:
         max-size: "2000k"
 
   nginx:
-    image: nginx:${NGINX_VERSION}
+    build: container/nginx
     restart: always
     container_name: nginx
     ports:
@@ -48,7 +48,7 @@ services:
       - "443:443"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${NGINX_CONFIG_PATH}:/etc/nginx:ro
+      - ${NGINX_CONFIG_PATH}:/etc/nginx
       - ${LOG_PATH}/nginx:/var/log/nginx
     logging:
       driver: "json-file"

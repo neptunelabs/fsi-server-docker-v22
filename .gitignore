@@ -2,6 +2,8 @@
 *.iml
 fsi-data/catalina
 fsi-data/overlay
+fsi-data/assets
+fsi-data/logs
 fsi-data/storage
 fsi-data/solr-core/fsi-server/data
 **/bench
