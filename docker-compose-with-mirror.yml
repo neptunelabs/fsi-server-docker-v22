@@ -2,7 +2,7 @@ version: '3'
 services:
 
   fsi-server:
-    image: neptunelabs/fsi-server:${FSI_VERSION}
+    image: ${FSI_SERVER_IMAGE}:${FSI_SERVER_IMAGE_TAG}
     restart: always
     container_name: fsi-server
     environment:

@@ -1,6 +1,10 @@
-ARG NGINX_VERSION=latest
-FROM nginx:${NGINX_VERSION}
+ARG NGINX_IMAGE=nginx
+ARG NGINX_IMAGE_TAG=alpine
+FROM ${NGINX_IMAGE}:${NGINX_IMAGE_TAG}
 
-ADD nginx-start.sh /nginx-start.sh
+RUN apk update && apk add logrotate
+
+COPY --chmod=755 nginx-start.sh /nginx-start.sh
 
 ENTRYPOINT ["/nginx-start.sh"]
+CMD service cron start && nginx -g 'daemon off;'

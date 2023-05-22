@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 if [ -w "/etc/nginx/certificates" ]
 then
@@ -12,4 +12,5 @@ then
   fi
 fi
 
+crond
 nginx -g 'daemon off;'
