@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+if [ ! -d "/etc/nginx/certificates" ]
+then
+  mkdir /etc/nginx/certificates
+fi
+
 if [ -w "/etc/nginx/certificates" ]
 then
   if [ ! -f "/etc/nginx/certificates/localhost.crt" ] || [ ! -f "/etc/nginx/certificates/localhost.key" ]

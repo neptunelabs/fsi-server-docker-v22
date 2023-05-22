@@ -134,7 +134,7 @@ This is based on the `docker-compose-with-mirror.yml` compose file, which also p
 On the target systems, **ssh** and **rsync** are required.
 
 An SSH Key is used to authenticate.
-The configuration of the lsyncd daemon and an empty example key are provided in the `conf/lsyncd` directory.
+The configuration of the lsyncd daemon are provided in the `conf/lsyncd` directory.
 
 For production use, you will need to change the hosts and target directories
 on the remote servers in `lsycd.conf.lua`, e.g. if fsi-data is in `/data` located.
