@@ -50,7 +50,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ${NGINX_CONFIG_PATH}:/etc/nginx
       - ${LOG_PATH}/nginx:/var/log/nginx
-#      - /etc/letsencrypt/live:/etc/letsencrypt/live
+#      - /etc/letsencrypt:/etc/letsencrypt:ro
     logging:
       driver: "json-file"
       options:
