@@ -50,6 +50,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ${NGINX_CONFIG_PATH}:/etc/nginx
       - ${LOG_PATH}/nginx:/var/log/nginx
+#      - /etc/letsencrypt/live:/etc/letsencrypt/live
     logging:
       driver: "json-file"
       options:
@@ -69,7 +70,7 @@ services:
       - ${OVERLAY_PATH}:${OVERLAY_PATH}:ro
       - ${STORAGE_PATH}:${STORAGE_PATH}:ro
       - ${LOG_PATH}/lsync:/var/log
-      # - ${FSI_CONFIG_PATH}:${FSI_CONFIG_PATH}:ro
+#      - ${FSI_CONFIG_PATH}:${FSI_CONFIG_PATH}:ro
     logging:
       driver: "json-file"
       options:
