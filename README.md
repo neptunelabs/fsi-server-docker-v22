@@ -40,7 +40,7 @@ This repository contains a *docker-compose* file for **Docker** or **Podman** ve
 Depending on the version, perform typical start/stop as follows.
 
 ``` shell
-docker compose up -d
+docker compose up --build -d
 ```
 
 ``` shell
@@ -65,16 +65,19 @@ The `docker-compose.yml` contains variable assignments from the file `.env`. Ple
 to your needs, i.e. the path for the source files and the storage, the configuration, etc.
 The variables mean:
 
-| VARIABLE        | MEANING                                                                |
-|-----------------|------------------------------------------------------------------------|
-| FSI_VERSION     | the version you want to use or can use (depending on the licence)      |
-| LOG_LEVEL       | log output verbosity                                               |
-| NGINX           | Docker tag for the ngxinx container                                    |
-| FSI_CONFIG_PATH | path in your filesystem for the configuration                          |
-| ASSET_PATH      | path in your filesystem for all your images                            |
-| STORAGE_PATH    | path in your filesystem for all images optimised for real-time scaling |
-| OVERLAY_PATH    | config folder for all FSI Viewer settings                              |
-| SYNC_KEY        | path to the lsyncd private key                                         |
+| VARIABLE             | MEANING                                                                |
+|----------------------|------------------------------------------------------------------------|
+| FSI_SERVER_IMAGE     | the name of the image (please leave this untouched)                    |
+| FSI_SERVER_IMAGE_TAG | the version you want to use or can use (depending on the licence)      |
+| NGINX_IMAGE_TAG      | Docker version tag for the nginx container                             |
+| FSI_CONFIG_PATH      | path in your filesystem for the configuration                          |
+| NGINX_CONFIG_PATH    | path to the nginx configuration and certificated                       |
+| ASSET_PATH           | path in your filesystem for all your images                            |
+| STORAGE_PATH         | path in your filesystem for all images optimised for real-time scaling |
+| OVERLAY_PATH         | config folder for all FSI Viewer settings                              |
+| SYNC_KEY             | path to the lsyncd private key                                         |
+| MIRROR_HOSTNAME      | domain name or IP of the mirror server                                 |
+| LOG_LEVEL            | log output verbosity                                                   |
 
 ### Directory - _conf_
 
@@ -134,10 +137,13 @@ This is based on the `docker-compose-with-mirror.yml` compose file, which also p
 On the target systems, **ssh** and **rsync** are required.
 
 An SSH Key is used to authenticate.
-The configuration of the lsyncd daemon and an empty example key are provided in the `conf/lsyncd` directory.
+The configuration of the lsyncd daemon are provided in the `conf/lsyncd` directory.
 
-For production use, you will need to change the hosts and target directories
-on the remote servers in `lsycd.conf.lua`, e.g. if fsi-data is in `/data` located.
+For production use, you will need to change `MIRROR_HOSTNAME` for the
+remote server in `.env`.
+The paths should be in the same place,
+otherwise the file `conf/lsyncd/lsyncd.conf.lua` must be adapted accordingly,
+e.g. like this:
 
 ```lua
 sync {
@@ -153,7 +159,7 @@ or only adjust it if your `docker-compose.yml` is modified accordingly.
 For example, the SSH key can be generated using this command
 
 ```shell
-ssh-keygen -t ed25519 -q -N "" -o -C "fsi-sync-key" -f ./conf/lsyncd/sync.key
+ssh-keygen -t ed25519 -q -N "" -o -C "fsi-sync-key@$(hostname)" -f ./conf/lsyncd/sync.key
 ```
 
 and transferred with this:
@@ -219,6 +225,43 @@ touchscreen displays, smartphones and tablets.
 We have placed some examples in various [repositories](https://github.com/neptunelabs)
 to illustrate the use of FSI Viewer.
 
+## Nginx and SSL/TLS Certificates
+
+The Nginx configuration in `conf/nginx` is prepared for LetsEncrypt certificates.
+Of course, certificates without Let’s Encrypt can also be used.
+
+For Let's Encrypt,
+an additional directory should be created for the HTTP-01 Challenge.
+
+```shell
+mkdir ./conf/nginx/acme
+```
+
+If nginx is running, then a certificate can be generated via certbot:
+
+```shell
+certbot certonly --webroot \
+-w ./conf/nginx/acme \
+-d fsi.domain.tld \
+--agree-tos \
+-m my@email.tld
+```
+
+Then the Let's Encrypt directory must be included in the nginx container:
+
+```
+  nginx:
+    volumes:
+      - /etc/letsencrypt/live:/etc/letsencrypt/live
+```
+
+Finally, the file `conf/nginx/sites/fsi-server.conf` must be adapted:
+
+```
+ssl_certificate /etc/letsencrypt/live/fsi.domain.tld/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/fsi.domain.tld/privkey.pem;
+ssl_trusted_certificate /etc/letsencrypt/live/fsi.domain.tld/chain.pem;
+```
 
 ## Bottlenecks
 
