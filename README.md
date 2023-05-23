@@ -287,7 +287,7 @@ To start the test, the `benchmark.yml` is executed as a compose file, e.g. as fo
 The test takes about 4 minutes and requires at least **5GB** of hard disk space.
 
 ```shell
-docker compose -f benchmark.yml run --rm --remove-orphans benchmark
+docker compose -f benchmark.yml run --rm benchmark
 ```
 A result will look like this:
 
