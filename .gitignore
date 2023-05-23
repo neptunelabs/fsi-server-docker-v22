@@ -7,5 +7,6 @@ fsi-data/logs
 fsi-data/storage
 fsi-data/solr-core/fsi-server/data
 **/bench
-conf/nginx/certificates/**
+conf/nginx/certificates/*
+!conf/nginx/certificates/ffdh*.pem
 conf/fsi-server/userprefs

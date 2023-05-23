@@ -51,6 +51,8 @@ services:
       - ${NGINX_CONFIG_PATH}:/etc/nginx
       - ${LOG_PATH}/nginx:/var/log/nginx
 #      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - fsi-server
     logging:
       driver: "json-file"
       options:
