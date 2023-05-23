@@ -2,7 +2,7 @@ version: '3'
 services:
 
   benchmark:
-    build: benchmark
+    build: container/benchmark
     volumes:
       - ${ASSET_PATH}:/bench/assets
       - ${STORAGE_PATH}:/bench/storage
