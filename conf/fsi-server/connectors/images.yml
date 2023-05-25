@@ -14,4 +14,7 @@ access:
       permissionSet: "public_images"
     - name: "authenticated"
       permissionSet: "full"
-comment: "Images Connector"
+#    - name: "users1"
+#      permissionSet: "full"
+comment: |
+  Images Connector

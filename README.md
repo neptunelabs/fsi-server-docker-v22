@@ -67,7 +67,6 @@ The variables mean:
 
 | VARIABLE             | MEANING                                                                |
 |----------------------|------------------------------------------------------------------------|
-| FSI_SERVER_IMAGE     | the name of the image (please leave this untouched)                    |
 | FSI_SERVER_IMAGE_TAG | the version you want to use or can use (depending on the licence)      |
 | NGINX_IMAGE_TAG      | Docker version tag for the nginx container                             |
 | FSI_CONFIG_PATH      | path in your filesystem for the configuration                          |
@@ -75,9 +74,12 @@ The variables mean:
 | ASSET_PATH           | path in your filesystem for all your images                            |
 | STORAGE_PATH         | path in your filesystem for all images optimised for real-time scaling |
 | OVERLAY_PATH         | config folder for all FSI Viewer settings                              |
+| SOLR_PATH            | path for FSI Server solr core index and data                           |
+| SOLR_SERVER_URI      | HTTP path to connect to the Apache Solr server                         |
+| LOG_PATH             | path where all log files are stored                                    |
+| LOG_FSI_LEVEL        | log output verbosity                                                   |
 | SYNC_KEY             | path to the lsyncd private key                                         |
 | MIRROR_HOSTNAME      | domain name or IP of the mirror server                                 |
-| LOG_LEVEL            | log output verbosity                                                   |
 
 ### Directory - _conf_
 

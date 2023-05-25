@@ -1,7 +1,7 @@
 ---
 enabled: true
 origin:
-  location: "samples/statics"
+  location: "/srv/fsi/mounts/assets/statics"
 type: "static"
 access:
   group:
@@ -9,6 +9,7 @@ access:
     permissionSet: "public_statics"
   - name: "authenticated"
     permissionSet: "full"
+#  - name: "users1"
+#    permissionSet: "full"
 comment: |
-  Sample Static Files
-  Connector can be safely removed
+  Static Files

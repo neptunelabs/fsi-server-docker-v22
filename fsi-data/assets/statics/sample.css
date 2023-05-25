@@ -1,0 +1,39 @@
+p {
+  border-style: solid;
+}
+
+p.none {
+  border-left-style: none;
+}
+
+p.dotted {
+  border-left-style: dotted;
+}
+
+p.dashed {
+  border-left-style: dashed;
+}
+
+p.solid {
+  border-left-style: solid;
+}
+
+p.double {
+  border-left-style: double;
+}
+
+p.groove {
+  border-left-style: groove;
+}
+
+p.ridge {
+  border-left-style: ridge;
+}
+
+p.inset {
+  border-left-style: inset;
+}
+
+p.outset {
+  border-left-style: outset;
+}
