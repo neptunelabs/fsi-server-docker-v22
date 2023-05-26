@@ -351,6 +351,47 @@ We also provide a free 60-day trial key without watermarks,
 you can see how to get one
 [here](https://www.neptunelabs.com/trial-options/trial/).
 
+## What's next?
+
+You can now benefit from the many features of FSI Server.
+Learn how to use the server efficiently with your website by consulting our various [repositories] (https://github.com/neptunelabs).
+
+Here are just a few:
+
+When you use FSI Server with our dynamic Single Source Imaging (SSI) technology, you only need to provide one high-resolution source image for every image used on a website.
+FSI Server dynamically generates images in different formats, sizes and qualities on the fly.
+
+The [Image Repository](https://github.com/neptunelabs/fsi-image-samples) shows you how to create a website front page using SSI:
+
+![SSI Image 1](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/ssi-1.jpg&width=700)
+
+and how to use the same images differently on a product listing page:
+
+![SSI Image 2](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/ssi-3.jpg&width=700)
+
+or how to use the technology to create an even more sophisticated product configurator:
+
+![SSI Image 3](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/ssi-4.jpg&width=700)
+
+You can also implement zoom on your website images, for example with the fly-out zoom shown in the [FSI QuickZoom repository](https://github.com/neptunelabs/fsi-quickzoom-samples):
+
+![QuickZoom Image 1](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/quick-1.jpg&width=700)
+
+or the Zoom and Pan function in the [FSI Viewer repository](https://github.com/neptunelabs/fsi-viewer-samples):
+
+![Zoom Image 1](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/zoom-1.jpg&width=700)
+
+But that's not all. Explore the other repositories to learn about various other features such as
+
+Interactive Brochures in the [FSI Pages repository](https://github.com/neptunelabs/fsi-pages-samples):
+
+or extensive configurator options in the [FSI Layers repository](https://github.com/neptunelabs/fsi-layers-samples):
+
+![Layers Image 1](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/layers-1.jpg&width=700)
+
+You can also browse our [Documentation Area](https://docs.neptunelabs.com/) to learn more about the features and how to use them.
+in detail, including tutorials for each viewer.
+
 ---
 
 ## Quick reference
