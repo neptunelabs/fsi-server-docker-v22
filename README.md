@@ -354,7 +354,7 @@ FSI Server dynamically generates images in different formats, sizes and qualitie
 
 The [Image Repository](https://github.com/neptunelabs/fsi-image-samples) shows you how to create a website front page using SSI:
 
-[![SSI Image 1](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/ssi-1.jpg&width=700)](https://neptunelabs.github.io/fsi-image-samples/frontpage/)
+[![SSI Image 1](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/ssi-1.jpg&width=700)](https://neptunelabs.github.io/fsi-image-samples/)
 
 ---
 
