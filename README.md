@@ -207,7 +207,6 @@ FSI Server uses a highly configurable combination of permission sets and groups 
 
 All assets are stored within source connectors (`conf/fsi-server/connectors`), which map a physical directory to a virtual folder used to address the asset.
 All users (`conf/fsi-server/users.yml`) are assigned to groups (`conf/fsi-server/groups.yml`), which are assigned to source connectors using predefined permission sets (`conf/fsi-server/permissionssets.yml`).
-Permission sets can also be assigned directly to groups or users, overriding the permissions set in the connector-group assignment.
 
 ## Backup
 
