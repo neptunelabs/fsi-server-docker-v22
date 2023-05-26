@@ -67,7 +67,6 @@ The variables mean:
 
 | VARIABLE             | MEANING                                                                |
 |----------------------|------------------------------------------------------------------------|
-| FSI_SERVER_IMAGE     | the name of the image (please leave this untouched)                    |
 | FSI_SERVER_IMAGE_TAG | the version you want to use or can use (depending on the licence)      |
 | NGINX_IMAGE_TAG      | Docker version tag for the nginx container                             |
 | FSI_CONFIG_PATH      | path in your filesystem for the configuration                          |
@@ -75,9 +74,12 @@ The variables mean:
 | ASSET_PATH           | path in your filesystem for all your images                            |
 | STORAGE_PATH         | path in your filesystem for all images optimised for real-time scaling |
 | OVERLAY_PATH         | config folder for all FSI Viewer settings                              |
+| SOLR_PATH            | path for FSI Server solr core index and data                           |
+| SOLR_SERVER_URI      | HTTP path to connect to the Apache Solr server                         |
+| LOG_PATH             | path where all log files are stored                                    |
+| LOG_FSI_LEVEL        | log output verbosity                                                   |
 | SYNC_KEY             | path to the lsyncd private key                                         |
 | MIRROR_HOSTNAME      | domain name or IP of the mirror server                                 |
-| LOG_LEVEL            | log output verbosity                                                   |
 
 ### Directory - _conf_
 
@@ -212,18 +214,6 @@ And it may be that the restore time without rebuild is considerably shorter,
 if the storage is backed up.
 This problem can be significantly reduced by using mirror servers.
 
-## Using - Single Source and FSI Viewer
-
-FSI Viewer offers zoom, 360° rotations, page turns in brochures, showcases, video-image combinations and 
-[so on](https://www.neptunelabs.com/).
-Product presentations become more vivid and compelling as you can view the product from all sides and explore every
-from all sides and explore every detail of an image with fast, smooth zooming.
-
-The viewer can be used on any device, including standard desktop
-touchscreen displays, smartphones and tablets.
-
-We have placed some examples in various [repositories](https://github.com/neptunelabs)
-to illustrate the use of FSI Viewer.
 
 ## Nginx and SSL/TLS Certificates
 
@@ -340,6 +330,56 @@ Individual values can also be undercut and are strongly dependent on the use of 
 | Minimum     | 10            | 250             | 2000           | 30     | 10000    |
 | Medium      | 15            | 700             | 3000           | 100    | 25000    |
 | Recommended | 20            | 1000            | 4000           | 200    | 50000    |
+
+
+## What's next?
+
+### Using Single Source and FSI Viewer
+
+FSI Viewer offers zoom, 360° rotations, page turns in brochures, showcases, video-image combinations and
+[so on](https://www.neptunelabs.com/).
+Product presentations become more vivid and compelling as you can view the product from all sides and explore every
+from all sides and explore every detail of an image with fast, smooth zooming.
+
+The viewer can be used on any device, including standard desktop
+touchscreen displays, smartphones and tablets.
+
+You can now benefit from the many features of FSI Server.
+Learn how to use the server efficiently with your website by consulting our various [repositories](https://github.com/neptunelabs).
+
+**Here are just a few:**
+
+When you use FSI Server with our dynamic Single Source Imaging (SSI) technology, you only need to provide one high-resolution source image for every image used on a website.
+FSI Server dynamically generates images in different formats, sizes and qualities on the fly.
+
+The [Image Repository](https://github.com/neptunelabs/fsi-image-samples) shows you how to create a website front page using SSI:
+
+[![SSI Image 1](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/ssi-1.jpg&width=700)](https://neptunelabs.github.io/fsi-image-samples/frontpage/)
+
+---
+
+You can also implement zoom on your website images, for example with the fly-out zoom shown in the [FSI QuickZoom repository](https://github.com/neptunelabs/fsi-quickzoom-samples):
+
+[![QuickZoom Image 1](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/quick-1.jpg&width=700)](https://neptunelabs.github.io/fsi-quickzoom-samples/)
+
+---
+
+or the Zoom and Pan function in the [FSI Viewer repository](https://github.com/neptunelabs/fsi-viewer-samples):
+
+[![Zoom Image 1](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/zoom-1.jpg&width=700)](https://neptunelabs.github.io/fsi-viewer-samples/)
+
+But that's not all. Explore the other repositories to learn about various other features such as
+
+Interactive Brochures in the [FSI Pages repository](https://github.com/neptunelabs/fsi-pages-samples):
+
+[![Pages Image 1](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/pages-1.jpg&width=700)](https://neptunelabs.github.io/fsi-pages-samples/)
+
+or extensive configurator options in the [FSI Layers repository](https://github.com/neptunelabs/fsi-layers-samples):
+
+[![Layers Image 1](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/layers-1.jpg&width=700)](https://neptunelabs.github.io/fsi-layers-samples/)
+
+To learn more about the features and how to use them, including tutorials for each viewer, 
+you can also browse our [documentation section](https://docs.neptunelabs.com/).
 
 
 ## Licensing
