@@ -16,7 +16,11 @@ CPU_FREQ=$(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_max_freq 2>/dev/null
 CPU_FREQ=$((CPU_FREQ / 1000))
 CPU_THREADS=$(grep -c processor /proc/cpuinfo)
 
-echo -e "\n\e[4mFSI Benchmark ${BENCH_VERSION} - ${CPU_NAME} @ ${CPU_FREQ}MHz - ${CPU_THREADS} Threads\e[0m"
+if [ "$CPU_FREQ" -eq "0" ]; then
+  echo -e "\n\e[4mFSI Benchmark ${BENCH_VERSION} - ${CPU_NAME} - ${CPU_THREADS} Threads\e[0m"
+else
+  echo -e "\n\e[4mFSI Benchmark ${BENCH_VERSION} - ${CPU_NAME} @ ${CPU_FREQ}MHz - ${CPU_THREADS} Threads\e[0m"
+fi
 
 echo -n "CPU-1            : "
 SCPU_BENCH=$(sysbench --threads=1 --verbosity=3 cpu --cpu-max-prime=200000 run | awk -f /bench/awk/cpu.awk)
