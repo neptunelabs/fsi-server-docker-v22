@@ -385,6 +385,8 @@ But that's not all. Explore the other repositories to learn about various other 
 
 Interactive Brochures in the [FSI Pages repository](https://github.com/neptunelabs/fsi-pages-samples):
 
+![Pages Image 1](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/pages-1.jpg&width=700)
+
 or extensive configurator options in the [FSI Layers repository](https://github.com/neptunelabs/fsi-layers-samples):
 
 ![Layers Image 1](https://docs.neptunelabs.com/fsi/server?type=image&source=images/samples/layers-1.jpg&width=700)
