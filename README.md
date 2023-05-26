@@ -2,11 +2,11 @@
 
 (valid until version 22.x)
 
-![alt text](http://fsi-site.neptunelabs.com/fsi/server?type=image&source=images%2Ffsi-logos%2Ffsi_server.png&width=250&height=86&format=png "FSI Server Logo")
+[![alt text](http://fsi-site.neptunelabs.com/fsi/server?type=image&source=images%2Ffsi-logos%2Ffsi_server.png&width=250&height=86&format=png "FSI Server Logo")][FSIServer]
 
 ---
 
-## What is FSI Server?
+## What is [FSI Server][FSIServer]?
 
 FSI Server dynamically generates images in a variety of formats, sizes and qualities - in real time.
 You only need to upload one high-resolution source image for each image used on a website,
@@ -413,3 +413,5 @@ you can see how to get one
 * Documentation: https://docs.neptunelabs.com/
 * More stuff on GitHub: https://github.com/neptunelabs
 * FSI Server EULA: https://www.neptunelabs.com/terms-conditions/end-user-license-agreement/
+
+[FSIServer]: https://www.neptunelabs.com/fsi-server/
