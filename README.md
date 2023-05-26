@@ -2,11 +2,11 @@
 
 (valid until version 22.x)
 
-![alt text](http://fsi-site.neptunelabs.com/fsi/server?type=image&source=images%2Ffsi-logos%2Ffsi_server.png&width=250&height=86&format=png "FSI Server Logo")
+[![alt text](http://fsi-site.neptunelabs.com/fsi/server?type=image&source=images%2Ffsi-logos%2Ffsi_server.png&width=250&height=86&format=png "FSI Server Logo")][FSIServer]
 
 ---
 
-## What is FSI Server?
+## What is [FSI Server][FSIServer]?
 
 FSI Server dynamically generates images in a variety of formats, sizes and qualities - in real time.
 You only need to upload one high-resolution source image for each image used on a website,
@@ -84,6 +84,7 @@ The variables mean:
 ### Directory - _conf_
 
 This directory contains all important configurations for the FSI server, but also for nginx or lsyncd.
+You can create new connectors, groups or users here and manage the permissions for them.
 
 ### Directory - _fsi-server_
 
@@ -96,8 +97,12 @@ This directory contains the so-called `storage`, which contains optimised versio
 It also contains **Apache Solr**'s search database, **Apache Tomcat Server**'s temporary files
 and a directory for FSI Viewer configurations (overlay).
 
-This demo repository also contains the `assets/images` directory,
+This demo repository contains the `assets/images` directory,
 in which all images for the *connector* `images.yml` must be located.
+
+It also contains the `assets/statics` directory,
+in which all static assets for the *connector* `static.yml` must be located.
+Static assets are for example .mp4, .pdf or .html or image files. These can be addressed as any other static file on a webserver by sending an HTTP GET request to http://your.fsi-server.com/fsi/static/path/to/file.txt.
 
 Docker needs write access to this directory.
 
@@ -194,11 +199,19 @@ Synchronisation is also not a good idea in case of errors in `storage` processin
 
 **Even if it means a higher load per mirror server, you should not transfer the storage.**
 
+## FSI Server Settings
+
+All relevant settings of the FSI Server can be found in the directory `conf`.
+
+FSI Server uses a highly configurable combination of permission sets and groups to control access to stored assets.
+
+All assets are stored within source connectors (`conf/fsi-server/connectors`), which map a physical directory to a virtual folder used to address the asset.
+All users (`conf/fsi-server/users.yml`) are assigned to groups (`conf/fsi-server/groups.yml`), which are assigned to source connectors using predefined permission sets (`conf/fsi-server/permissionssets.yml`).
 
 ## Backup
 
-Of course, depending on how the images arrive on the image server, you should back up your images.
-In any case, you should also backup the `conf/fsi-server` directory, as the server licence,
+Of course, depending on how the images arrive at the image server, you should back up your images.
+In any case, you should also back up the `conf/fsi-server` directory, as the server licence,
 the created users and connectors are stored there.
 
 In addition, the `$OVERLAY_PATH` and `$STORAGE_PATH/metadata` should be saved.
@@ -400,3 +413,5 @@ you can see how to get one
 * Documentation: https://docs.neptunelabs.com/
 * More stuff on GitHub: https://github.com/neptunelabs
 * FSI Server EULA: https://www.neptunelabs.com/terms-conditions/end-user-license-agreement/
+
+[FSIServer]: https://www.neptunelabs.com/fsi-server/

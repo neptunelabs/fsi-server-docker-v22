@@ -20,5 +20,5 @@ then
   fi
 fi
 
-crond
+/usr/sbin/crond -f &
 nginx -g 'daemon off;'
