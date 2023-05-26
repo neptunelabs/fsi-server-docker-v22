@@ -161,18 +161,6 @@ sync {
 If necessary, you should leave the `source` and `rsh` configuration as is,
 or only adjust it if your `docker-compose.yml` is modified accordingly.
 
-
-## FSI Server Settings
-
-All relevant settings of the FSI Server can be found in the directory `conf`.
-
-FSI Server uses a highly configurable combination of permission sets and groups to control access to stored assets.
-
-All assets are stored within source connectors (`conf/fsi-server/connectors`), which map a physical directory to a virtual folder used to address the asset.
-All users (`conf/fsi-server/users.yml`) are assigned to groups (`conf/fsi-server/groups.yml`), which are assigned to source connectors using predefined permission sets (`conf/fsi-server/permissionssets.yml`).
-Permission sets can also be assigned directly to groups or users, overriding the permissions set in the connector-group assignment.
-
-
 ### SSH key generation
 
 For example, the SSH key can be generated using this command
@@ -210,6 +198,16 @@ the server mirror server returns a 5xx error because it does not know about the 
 Synchronisation is also not a good idea in case of errors in `storage` processing.
 
 **Even if it means a higher load per mirror server, you should not transfer the storage.**
+
+## FSI Server Settings
+
+All relevant settings of the FSI Server can be found in the directory `conf`.
+
+FSI Server uses a highly configurable combination of permission sets and groups to control access to stored assets.
+
+All assets are stored within source connectors (`conf/fsi-server/connectors`), which map a physical directory to a virtual folder used to address the asset.
+All users (`conf/fsi-server/users.yml`) are assigned to groups (`conf/fsi-server/groups.yml`), which are assigned to source connectors using predefined permission sets (`conf/fsi-server/permissionssets.yml`).
+Permission sets can also be assigned directly to groups or users, overriding the permissions set in the connector-group assignment.
 
 ## Backup
 
