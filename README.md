@@ -33,6 +33,7 @@ At least 2 GB of RAM per CPU thread and a total amount of 8 GB RAM are recommend
 For production environments with millions of images, systems with more than 32GB of RAM are recommended.
 Monitor the log output to identify any bottlenecks.
 
+
 ## How to use this repository
 
 This repository contains a *docker-compose* file for **Docker** or **Podman** version 3.0 or higher.
@@ -49,6 +50,14 @@ docker compose down
 
 If you are new to **docker** or **docker compose** commands, you might want to read the
 [documentation](https://docs.docker.com/compose/) first.
+
+### Web Interface
+
+After starting the containers, the FSI server can be reached via a web interface.
+The default ports are `80` and `443`.
+When the server is started locally, it is accessible as follows, with invalid certificates:
+
+**https://localhost/**
 
 ### *docker-compose.yml and .env*
 
@@ -81,36 +90,88 @@ The variables mean:
 | SYNC_KEY             | path to the lsyncd private key                                         |
 | MIRROR_HOSTNAME      | domain name or IP of the mirror server                                 |
 
-### Directory - _conf_
+### Directory: `conf/fsi-server`
 
-This directory contains all important configurations for the FSI server, but also for nginx or lsyncd.
+All relevant settings of the FSI Server can be found in this directory.
+The server uses a highly configurable combination of permission sets and groups
+to control access to stored assets.
+The container needs write access to this directory because
+user data from the server can be stored here.
+
 You can create new connectors, groups or users here and manage the permissions for them.
 
-### Directory - _fsi-server_
+| FILE                 | SETTING DESCRIPTION                                                                                                                                    |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `settings.yml`       | Basic settings, storage location and the default size of the rendered images. For these container installations, you should leave this file untouched. |
+| `users.yml`          | Users and their passwords and, if applicable, the 2FA Secret                                                                                           |
+| `groups.yml`         | User and rights assignments to a group                                                                                                                 |
+| `permissionsets.yml` | Permission settings for user groups and for connectors                                                                                                 |
+| `interface.yml`      | Settings for the Web Interface                                                                                                                         |
+| `headers.yml`        | Presets for HTTP header overwrites                                                                                                                     |
+| `connectors/*.yml`   | Mapping for local paths to addressable paths via FSI Server                                                                                            |
+| `renderers/*.yml`    | Encoder presets for retrieving rendered images                                                                                                         |
 
-The entire configuration of the FSI server is located here.
-Docker needs write access to this directory.
+This demo repository contains the `images` and a `statics` directory under `fsi-data/assets` and
+the corresponding connectors which you can find in the `connectors` directory.
+To add more mappings just copy one of these connectors, change the `origin.location` and make sure
+that you choose the correct `type` (*storage* for dynamic rendered images and *static* for immutable assets).
 
-### Directory - _fsi-data_
+### Directory: `conf/nginx`
 
-This directory contains the so-called `storage`, which contains optimised versions of the asset.
-It also contains **Apache Solr**'s search database, **Apache Tomcat Server**'s temporary files
-and a directory for FSI Viewer configurations (overlay).
+The configuration for the nginx container.
+The start-up script generates certificates for *localhost* in the `certificates` folder at start-up.
 
-This demo repository contains the `assets/images` directory,
-in which all images for the *connector* `images.yml` must be located.
+### Directory: `conf/lsyncd`
 
-It also contains the `assets/statics` directory,
-in which all static assets for the *connector* `static.yml` must be located.
-Static assets are for example .mp4, .pdf or .html or image files. These can be addressed as any other static file on a webserver by sending an HTTP GET request to http://your.fsi-server.com/fsi/static/path/to/file.txt.
+The configuration for the lsyncd container if you use the compose file for mirror servers.
 
-Docker needs write access to this directory.
+### Directory: `fsi-data/assets`
+
+Contains sample assets that corresponding to the two connectors supplied.
+The images folder contains images that can be rendered dynamically.
+The statics folder contains files that are delivered unchanged, for example .mp4, .pdf or .html or image files.
+
+The path can be adjusted via the `.env` variable ASSET_PATH.
+
+### Directory: `fsi-data/storage`
+(exists after start the container)
+
+This directory contains the so-called `storage`, which contains optimised versions of all assets.
+The path can be adjusted via the `.env` variable STORAGE_PATH.  
+⚠️ This folder is mandatory persistent, should not be lost and can be about the same size as all the folders addressed in the connectors.
+
+### Directory: `fsi-data/solr-core`
+
+The internal search of the FSI server requires an external Apache Solr server.
+This directory therefore contains the so-called Solr core, which defines the mapping of the image metadata.
+
+If the core is not present, it will be created again when the fsi-server container is restarted.
+
+### Directory: `fsi-data/overlay`
+(exists after start the container)
+
+The FSI Viewer can make use of ready-made presets and skins.
+These are stored in this directory.
+The path can be changed via the variable OVERLAY_PATH.
+
+### Directory: `fsi-data/logs`
+(exists after start the container)
+
+Log files for the FSI server, nginx and, if applicable, lsyncd are stored centrally here.
+The path can be changed via the variable LOG_PATH.
+
+### Directory: `container`
+
+The containers for nginx, lsync and the benchmark are built using the files in this directory.
+Normally it is not necessary to make adjustments here.Normalerweise ist es nicht notwendig hier Anpassungen vorzunehmen.
 
 ### Where to put my pictures?
 
-For test purposes, you can store your images under `fsi-data/assets/images`.
+For test purposes, you can store your images to `fsi-data/assets/images` and your static files
+(like videos or PDF files) to `fsi-data/assets/statics`.
 For production environments, place the images where it is best for backup and synchronisation tasks.
-Then create connectors under `conf/fsi-server/connectors`, according to the mappings in the `docker-compose.yml`.
+Then create or change connectors under `conf/fsi-server/connectors`,
+according to the mappings in the `docker-compose.yml`.
 
 ### *kubernetes*
 
@@ -199,14 +260,6 @@ Synchronisation is also not a good idea in case of errors in `storage` processin
 
 **Even if it means a higher load per mirror server, you should not transfer the storage.**
 
-## FSI Server Settings
-
-All relevant settings of the FSI Server can be found in the directory `conf`.
-
-FSI Server uses a highly configurable combination of permission sets and groups to control access to stored assets.
-
-All assets are stored within source connectors (`conf/fsi-server/connectors`), which map a physical directory to a virtual folder used to address the asset.
-All users (`conf/fsi-server/users.yml`) are assigned to groups (`conf/fsi-server/groups.yml`), which are assigned to source connectors using predefined permission sets (`conf/fsi-server/permissionssets.yml`).
 
 ## Backup
 
@@ -310,7 +363,7 @@ I/O IOPS Storage : 53023 IOPS
 
 This test tests classically via the calculation of prime numbers.
 The test is performed on a single thread/core.
-It tells you how fast a thread can work and corresponds to the clock frequency of the processor.
+It indicates how fast a thread can work and corresponds to the clock frequency and performance of the processor.
 
 #### CPU-MAX - ops/sec
 
@@ -321,11 +374,14 @@ The same test, but using all available threads/cores.
 The RAM throughput with one thread is tested.
 
 #### I/O - BW
+
 Corresponds to the measured read bandwidth on this device.
+The test is performed separately for `ASSET_PATH` and `STORAGE_PATH`.
 
 #### I/O - IOPS
 
 Corresponds to the measured I/O operations per second on this device.
+The test is also performed separately for `ASSET_PATH` and `STORAGE_PATH`.
 
 #### Recommendations
 
@@ -349,8 +405,8 @@ Individual values can also be undercut and are strongly dependent on the use of 
 
 ### Using Single Source and FSI Viewer
 
-FSI Viewer offers zoom, 360° rotations, page turns in brochures, showcases, video-image combinations and
-[so on](https://www.neptunelabs.com/).
+The [FSI Viewer](https://www.neptunelabs.com/fsi-viewer/), included in the FSI Server, offers zoom, 360° rotation,
+page flipping in brochures, showcases, video/image combinations and [more](https://www.neptunelabs.com/).
 Product presentations become more vivid and compelling as you can view the product from all sides and explore every
 from all sides and explore every detail of an image with fast, smooth zooming.
 
