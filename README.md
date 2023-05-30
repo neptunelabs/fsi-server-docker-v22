@@ -53,7 +53,7 @@ If you are new to **docker** or **docker compose** commands, you might want to r
 
 ### Web Interface
 
-After starting the containers, the FSI server can be reached via a web interface.
+After starting the containers, the FSI Server can be reached via a web interface.
 The default ports are `80` and `443`.
 When the server is started locally, it is accessible as follows, with invalid certificates:
 
@@ -61,7 +61,8 @@ When the server is started locally, it is accessible as follows, with invalid ce
 
 ### *docker-compose.yml and .env*
 
-This repository comes with a `docker-compose.yml` file that contains **Apache Solr** for internal search,
+This repository comes with a `docker-compose.yml` file that contains [Apache Solr](https://solr.apache.org/)
+for internal search,
 [nginx](https://nginx.org/) for SSL termination and [lsyncd](https://github.com/lsyncd/lsyncd) for synchronisation.
 You are free to replace nginx with your own preferred SSL termination server,
 such as [Caddy](https://caddyserver.com/), [Traefik](https://traefik.io/)
@@ -74,13 +75,13 @@ The `docker-compose.yml` contains variable assignments from the file `.env`. Ple
 to your needs, i.e. the path for the source files and the storage, the configuration, etc.
 The variables mean:
 
-| VARIABLE             | MEANING                                                                |
+| VARIABLE             | DESCRIPTION                                                            |
 |----------------------|------------------------------------------------------------------------|
 | FSI_SERVER_IMAGE_TAG | the version you want to use or can use (depending on the licence)      |
 | NGINX_IMAGE_TAG      | Docker version tag for the nginx container                             |
-| FSI_CONFIG_PATH      | path in your filesystem for the configuration                          |
+| FSI_CONFIG_PATH      | path in your filesystem for the FSI Server configuration               |
 | NGINX_CONFIG_PATH    | path to the nginx configuration and certificated                       |
-| ASSET_PATH           | path in your filesystem for all your images                            |
+| ASSET_PATH           | path in your filesystem for all your images and static assets          |
 | STORAGE_PATH         | path in your filesystem for all images optimised for real-time scaling |
 | OVERLAY_PATH         | config folder for all FSI Viewer settings                              |
 | SOLR_PATH            | path for FSI Server solr core index and data                           |
@@ -190,15 +191,16 @@ we recommend benchmarks (see below) for filling with images and retrieving them 
 If you do not operate a second, third or further mirror server,
 you can ignore all information in this section.
 
-However, if you want to run more than one Image Server with the same assets,
-you not only need to synchronise the images between the servers,
+However, if you want to run more than one image server with the same assets,
+which is actually obligatory for productive purposes,
+you need to synchronise not only the images between the servers,
 but also new asset metadata and viewer configurations.
 Depending on your setup, you may also want to synchronise the server configuration.
 
 If you are not using a distributed file system, **lsyncd** can be used as a synchronisation tool.
 **Lsyncd** is reliable and proven, and allows very complex settings through Lua script-based configuration.
 
-### Config changes
+### Configuration
 
 This is based on the `docker-compose-with-mirror.yml` compose file, which also provides a lsyncd service.
 
@@ -286,8 +288,9 @@ This problem can be significantly reduced by using mirror servers.
 The Nginx configuration in `conf/nginx` is prepared for LetsEncrypt certificates.
 Of course, certificates without Let’s Encrypt can also be used.
 
-For Let's Encrypt,
-an additional directory should be created for the HTTP-01 Challenge.
+It is assumed that [certbot](https://certbot.eff.org/) is installed on the system.
+
+For Let's Encrypt an additional directory should be created for the HTTP-01 Challenge.
 
 ```shell
 mkdir ./conf/nginx/acme
@@ -318,6 +321,7 @@ ssl_certificate /etc/letsencrypt/live/fsi.domain.tld/fullchain.pem;
 ssl_certificate_key /etc/letsencrypt/live/fsi.domain.tld/privkey.pem;
 ssl_trusted_certificate /etc/letsencrypt/live/fsi.domain.tld/chain.pem;
 ```
+
 
 ## Bottlenecks
 
