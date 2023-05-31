@@ -2,7 +2,3 @@
 group:
 - name: "authenticated"
 - name: "public"
-- name: "administrators"
-  permissionSet: "administrator"
-  user:
-  - value: "admin"
