@@ -10,4 +10,3 @@ ADD --chmod=755 nginx-start.sh /1.sh
 RUN tr -d '\r' < /1.sh >/nginx-start.sh && chmod +x nginx-start.sh
 
 ENTRYPOINT ["/nginx-start.sh"]
-CMD nginx -g 'daemon off;'
