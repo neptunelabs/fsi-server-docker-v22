@@ -90,6 +90,7 @@ The variables mean:
 | LOG_FSI_LEVEL        | log output verbosity                                                   |
 | SYNC_KEY             | path to the lsyncd private key                                         |
 | MIRROR_HOSTNAME      | domain name or IP of the mirror server                                 |
+| MIRROR_SSH_PORT      | SSH port of the mirror server                                          |
 
 ### Directory: `conf/fsi-server`
 
