@@ -1,6 +1,9 @@
 local mirror_host = os.getenv("MIRROR_HOSTNAME")
 assert(mirror_host, "MIRROR_HOSTNAME env variable is not set")
 
+local mirror_ssh_port = os.getenv("MIRROR_SSH_PORT")
+assert(mirror_ssh_port, "MIRROR_SSH_PORT env variable is not set")
+
 local asset_path = os.getenv("ASSET_PATH")
 assert(asset_path, "ASSET_PATH env variable is not set")
 
@@ -33,7 +36,7 @@ sync {
     perms = true,
     owner = true,
     _extra = {"-a", "--itemize-changes", "--temp-dir=/tmp"},
-    rsh = "ssh -q -p 22 -i /data/authorized_keys/sync.key -o StrictHostKeyChecking=no"
+    rsh = "ssh -q -p " .. mirror_ssh_port .. "-i /sync.key -o StrictHostKeyChecking=no"
   }
 }
 
@@ -49,7 +52,7 @@ sync {
     perms = true,
     owner = true,
     _extra = {"-a", "--itemize-changes", "--temp-dir=/tmp"},
-    rsh = "ssh -q -p 22 -i /data/authorized_keys/sync.key -o StrictHostKeyChecking=no"
+    rsh = "ssh -q -p " .. mirror_ssh_port .. "-i /sync.key -o StrictHostKeyChecking=no"
   }
 }
 
@@ -65,7 +68,7 @@ sync {
     perms = true,
     owner = true,
     _extra = {"-a", "--itemize-changes", "--temp-dir=/tmp"},
-    rsh = "ssh -q -p 22 -i /data/authorized_keys/sync.key -o StrictHostKeyChecking=no"
+    rsh = "ssh -q -p " .. mirror_ssh_port .. "-i /sync.key -o StrictHostKeyChecking=no"
   }
 }
 
@@ -83,7 +86,7 @@ sync {
     perms = true,
     owner = true,
     _extra = {"-a", "--itemize-changes", "--temp-dir=/tmp"},
-    rsh = "ssh -q -p 22 -i /data/authorized_keys/sync.key -o StrictHostKeyChecking=no"
+    rsh = "ssh -q -p " .. mirror_ssh_port .. "-i /sync.key -o StrictHostKeyChecking=no"
   }
 }
 --]]

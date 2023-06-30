@@ -67,7 +67,7 @@ services:
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - ./conf/lsyncd/lsyncd.conf.lua:/config/lsyncd.lua:ro
-      - ${SYNC_KEY}:/data/authorized_keys/sync.key:ro
+      - ${SYNC_KEY}:/sync.key:ro
       - ${ASSET_PATH}:${ASSET_PATH}:ro
       - ${OVERLAY_PATH}:${OVERLAY_PATH}:ro
       - ${STORAGE_PATH}:${STORAGE_PATH}:ro
