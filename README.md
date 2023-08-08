@@ -4,6 +4,21 @@
 
 [![alt text](http://fsi-site.neptunelabs.com/fsi/server?type=image&source=images%2Ffsi-logos%2Ffsi_server.png&width=250&height=86&format=png "FSI Server Logo")][FSIServer]
 
+<p align="center">
+  <a href="#what-is-fsi-server"><strong>What is FSI Server?</strong></a> ·
+  <a href="#requirements"><strong>Requirements</strong></a> ·
+  <a href="#how-to-use-this-repository"><strong>How to use this repository</strong></a> ·
+  <a href="#synchronisation-to-mirror-servers-with-lsyncd"><strong>Synchronisation to mirror servers with lsyncd</strong></a> ·
+  <a href="#backup"><strong>Backup</strong></a> ·
+ <a href="#nginx-and-ssltls-certificates"><strong>Nginx and SSL/TLS Certificates</strong></a> ·
+<a href="#bottlenecks"><strong>Bottlenecks</strong></a> ·
+<a href="#benchmark"><strong>Benchmark</strong></a> ·
+<a href="#whats-next"><strong>What's next?</strong></a> ·
+<a href="#licensing"><strong>Licensing</strong></a> ·
+<a href="#quick-reference"><strong>Quick reference</strong></a>
+
+</p>
+
 ---
 
 ## What is [FSI Server][FSIServer]?

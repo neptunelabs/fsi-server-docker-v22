@@ -1,4 +1,4 @@
 ---
 group:
-- name: "authenticated"
-- name: "public"
+  - name: "authenticated"
+  - name: "public"
