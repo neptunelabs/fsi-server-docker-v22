@@ -74,9 +74,9 @@ When the server is started locally, it is accessible as follows, with invalid ce
 
 **https://localhost/**
 
-### *docker-compose.yml and .env*
+### *compose.yaml and .env*
 
-This repository comes with a `docker-compose.yml` file that contains [Apache Solr](https://solr.apache.org/)
+This repository comes with a `compose.yaml` file that contains [Apache Solr](https://solr.apache.org/)
 for internal search,
 [nginx](https://nginx.org/) for SSL termination and [lsyncd](https://github.com/lsyncd/lsyncd) for synchronisation.
 You are free to replace nginx with your own preferred SSL termination server,
@@ -86,7 +86,7 @@ or [Hitch](https://www.varnish-software.com/community/hitch/).
 It also contains invalid, but necessary for a first start, SSL certificates for localhost.
 You should replace them with valid certificates for your domain for production purposes.
 
-The `docker-compose.yml` contains variable assignments from the file `.env`. Please adjust the file according
+The `compose.yaml` contains variable assignments from the file `.env`. Please adjust the file according
 to your needs, i.e. the path for the source files and the storage, the configuration, etc.
 The variables mean:
 
@@ -188,7 +188,7 @@ For test purposes, you can store your images to `fsi-data/assets/images` and you
 (like videos or PDF files) to `fsi-data/assets/statics`.
 For production environments, place the images where it is best for backup and synchronisation tasks.
 Then create or change connectors under `conf/fsi-server/connectors`,
-according to the mappings in the `docker-compose.yml`.
+according to the mappings in the `compose.yaml`.
 
 ### *kubernetes*
 
@@ -218,7 +218,7 @@ If you are not using a distributed file system, **lsyncd** can be used as a sync
 
 ### Configuration
 
-This is based on the `docker-compose-with-mirror.yml` compose file, which also provides a lsyncd service.
+This is based on the `compose-with-mirror.yaml` compose file, which also provides a lsyncd service.
 
 On the target systems, **ssh** and **rsync** are required.
 
@@ -238,7 +238,7 @@ sync {
 ```
 
 If necessary, you should leave the `source` and `rsh` configuration as is,
-or only adjust it if your `docker-compose.yml` is modified accordingly.
+or only adjust it if your `compose.yaml` is modified accordingly.
 
 ### SSH key generation
 
@@ -359,11 +359,11 @@ To help you assess whether your system is fast enough,
 we have put together a useful benchmark based on *fio* and *sysbench*.
 It respects the settings of `ASSET_PATH` and `STORAGE_PATH` in the `.env` file.
 
-To start the test, the `benchmark.yml` is executed as a compose file, e.g. as follows.
+To start the test, the `benchmark.yaml` is executed as a compose file, e.g. as follows.
 The test takes about 4 minutes and requires at least **5GB** of hard disk space.
 
 ```shell
-docker compose -f benchmark.yml run --rm benchmark
+docker compose -f benchmark.yaml run --rm benchmark
 ```
 A result will look like this:
 

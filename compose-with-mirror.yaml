@@ -1,4 +1,11 @@
-version: '3'
+name: fsi
+
+x-logging:
+  &fsi-logging
+  options:
+    max-size: "2000k"
+  driver: json-file
+
 services:
 
   fsi-server:
@@ -8,6 +15,8 @@ services:
     environment:
       - SOLR_SERVER_URI=${SOLR_SERVER_URI}
       - LOG_FSI_LEVEL=${LOG_FSI_LEVEL}
+    networks:
+      - backend
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - ${FSI_CONFIG_PATH}:/srv/fsi/mounts/config
@@ -18,15 +27,12 @@ services:
     depends_on:
       - solr-server
     userns_mode: "host"
+    logging: *fsi-logging
     ulimits:
       nproc: 65535
       nofile:
         soft: 20000
         hard: 40000
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "2000k"
 
   solr-server:
     image: solr:6-slim
@@ -34,17 +40,19 @@ services:
     container_name: solr
     user: "0:0"
     command: ["/opt/solr/bin/solr", "start", "-p", "8983", "-f", "-force"]
+    networks:
+      - backend
     volumes:
       - ${SOLR_PATH}:/opt/solr/server/solr/fsi-server
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "2000k"
+    logging: *fsi-logging
 
   nginx:
     build: container/nginx
     restart: always
     container_name: nginx
+    networks:
+      - frontend
+      - backend
     ports:
       - "80:80"
       - "443:443"
@@ -55,7 +63,27 @@ services:
 #      - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - fsi-server
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "2000k"
+    logging: *fsi-logging
+
+  lsyncd:
+    build: container/lsyncd
+    restart: always
+    container_name: lsyncd
+    env_file:
+      - .env
+    networks:
+      - backend
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - ./conf/lsyncd/lsyncd.conf.lua:/config/lsyncd.lua:ro
+      - ${SYNC_KEY}:/sync.key:ro
+      - ${ASSET_PATH}:${ASSET_PATH}:ro
+      - ${OVERLAY_PATH}:${OVERLAY_PATH}:ro
+      - ${STORAGE_PATH}:${STORAGE_PATH}:ro
+      - ${LOG_PATH}/lsync:/var/log
+#      - ${FSI_CONFIG_PATH}:${FSI_CONFIG_PATH}:ro
+    logging: *fsi-logging
+
+networks:
+  frontend:
+  backend:

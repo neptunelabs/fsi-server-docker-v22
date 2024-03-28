@@ -1,6 +1,6 @@
-FROM alpine:3.18
+FROM alpine:3.19
 
-ENV BENCH_VERSION=1.0.6
+ENV BENCH_VERSION=1.0.7
 
 RUN apk add --no-cache sysbench fio jq libaio
 
