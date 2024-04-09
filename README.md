@@ -51,7 +51,7 @@ Monitor the log output to identify any bottlenecks.
 
 ## How to use this repository
 
-This repository contains a *docker-compose* file for **Docker** or **Podman** version 3.0 or higher.
+This repository contains a *docker compose* file for **Docker Compose** V2 or higher.
 
 Depending on the version, perform typical start/stop as follows.
 
