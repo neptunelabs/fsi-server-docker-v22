@@ -192,7 +192,7 @@ according to the mappings in the `compose.yaml`.
 
 ### *kubernetes*
 
-Apart from docker or Podman, you can also run the containers in a k8s environment.
+Apart from docker you can also run the containers in a k8s environment.
 The important thing here is access to the assets and the storage.
 These should be connected as efficiently as possible.
 In the case of k8s, this may include atypical local storage.
