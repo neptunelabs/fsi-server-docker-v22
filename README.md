@@ -32,6 +32,7 @@ FSI Server provides a comprehensive set of HTTP commands that allow full control
 In addition, the FSI Server comes with a variety of viewers that make integration 
 into existing websites very easy.
 
+> __Important: The latest version of FSI Server is 24.07. Please refer to the relevant [repository](https://github.com/neptunelabs/fsi-server-docker-v24) for more information.__
 
 ## Requirements
 
