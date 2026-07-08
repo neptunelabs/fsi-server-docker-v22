@@ -1,6 +1,6 @@
 # FSI Server Container Setup
 
-(valid until version 22.x)
+(Applies up to and including FSI Server version **22.x** - The follow-up setup is here: [V24](https://github.com/neptunelabs/fsi-server-docker-v24)
 
 [![alt text](http://fsi-site.neptunelabs.com/fsi/server?type=image&source=images%2Ffsi-logos%2Ffsi_server.png&width=250&height=86&format=png "FSI Server Logo")][FSIServer]
 
@@ -21,6 +21,11 @@
 
 ---
 
+> [!IMPORTANT]
+> This repository uses an older version of FSI Server.
+> For new installations, please use version 24. 
+> Please refer to the relevant [repository](https://github.com/neptunelabs/fsi-server-docker-v24) for more information.
+
 ## What is [FSI Server][FSIServer]?
 
 FSI Server dynamically generates images in a variety of formats, sizes and qualities - in real time.
@@ -31,8 +36,6 @@ FSI Server provides a comprehensive set of HTTP commands that allow full control
 
 In addition, the FSI Server comes with a variety of viewers that make integration 
 into existing websites very easy.
-
-> __Important: The latest version of FSI Server is 24.07. Please refer to the relevant [repository](https://github.com/neptunelabs/fsi-server-docker-v24) for more information.__
 
 ## Requirements
 
