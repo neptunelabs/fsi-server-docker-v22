@@ -1,4 +1,4 @@
-# FSI Server Container Setup
+# FSI Server Container Setup (v22.x)
 
 (Applies up to and including FSI Server version **22.x** - The follow-up setup is here: [V24](https://github.com/neptunelabs/fsi-server-docker-v24))
 
